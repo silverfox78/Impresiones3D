@@ -226,6 +226,7 @@
             $('#div_estado').html(div_estado);
 
             $('#bar_progreso').css('width', '0%');
+            stl_viewer.clean();
             stl_viewer.remove_model(0);
             stl_viewer.add_models([{
                 id: 0,
@@ -271,6 +272,8 @@
                 }]
             }
         );
+
+        stl_viewer.clean();
 
         $(document).ready(function () {
             $('#div_titulo').html('Dado D20');
