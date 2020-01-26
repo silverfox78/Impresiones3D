@@ -15,25 +15,110 @@
     <div class="container">
         <br />
         <div class="jumbotron" style="background-color: rgb(34, 124, 207);">
-            <h1 class="display-4">Listado de Modelo 3D</h1>
-            <hr />
+            <h3 class="font-weight-bold">Listado de Modelo 3D</h3>
         </div>
         <br />
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="progress">
-                    <div id="bar_progreso" class="progress-bar progress-bar-striped" role="progressbar"
-                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="1"></div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="modelos-tab" data-toggle="tab" href="#modelos" role="tab"
+                    aria-controls="modelos" aria-selected="true">Modelos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pendientes-tab" data-toggle="tab" href="#pendientes" role="tab"
+                    aria-controls="pendientes" aria-selected="false">Pendientes</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="modelos" role="tabpanel" aria-labelledby="modelos-tab">
+                <br />
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-9">
+                                <div id="div_titulo" class="alert alert-primary" role="alert"></div>
+                            </div>
+                            <div class="col-3" id="div_estado"></div>
+                        </div>
+
+                        <div class="form-row align-items-center">
+                            <div class="col-2">
+                                <label class="sr-only" for="inlineFormInputGroup">Alto</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Alto</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="txt_alto" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <label class="sr-only" for="inlineFormInputGroup">Ancho</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Ancho</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="txt_ancho" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <label class="sr-only" for="inlineFormInputGroup">Largo</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Largo</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="txt_largo" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <label class="sr-only" for="inlineFormInputGroup">Peso</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Peso</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="txt_peso" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <label class="sr-only" for="inlineFormInputGroup">Tiempo</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Tiempo</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="txt_tiempo" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div id="bar_progreso" class="progress-bar progress-bar-striped" role="progressbar"
+                                aria-valuenow="10" aria-valuemin="0" aria-valuemax="1"></div>
+                        </div>
+                        <hr />
+                        <div id="stl_cont" style="max-height: 700px; height: 700px; margin: auto; width: 80%;"></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <h5 class="card-header">Modelos</h5>
+                            <div id="div_botones" class="card-body overflow-auto"></div>
+                        </div>
+                    </div>
                 </div>
-                <hr />
-                <div id="stl_cont" style="max-height: 700px; height: 700px; margin: auto; width: 80%;"></div>
             </div>
-
-            <div id="div_botones" class="col-lg-4"></div>
+            <div class="tab-pane fade" id="pendientes" role="tabpanel" aria-labelledby="pendientes-tab">
+                <br />
+                <div class="card" style="width: 100%;">
+                    <div class="card-header">
+                        Listado de pendientes
+                    </div>
+                    <ul class="list-group list-group-flush" id="div_lst_pendientes"></ul>
+                </div>
+            </div>
         </div>
+
+
         <br /><br /><br /><br /><br />
-
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -49,19 +134,46 @@
 
     <script>
         let listado = [{
-                Nombre: "Dado D20",
-                Ruta: "./stl/D20.stl",
-                GCODE: "./gcode/D20.gcode"
-            },
-            {
+                Id: 1,
+                Pedido: "Nadie",
+                orden: 2,
+                Estado: "PENDIENTE",
                 Nombre: "Base Impresion",
                 Ruta: "./stl/Base Impresion.stl",
-                GCODE: "./gcode/Base Impresion.gcode"
+                GCODE: "./gcode/Base Impresion.gcode",
+                Alto: 0,
+                Ancho: 0,
+                Largo: 0,
+                Peso: 0,
+                Tiempo: ""
             },
             {
+                Id: 2,
+                Pedido: "Samuel",
+                orden: 3,
+                Estado: "IMPRIMIENDO",
                 Nombre: "Figura All Might",
                 Ruta: "./stl/all_might_and_stand.stl",
-                GCODE: "./gcode/All_might.gcode"
+                GCODE: "./gcode/All_might.gcode",
+                Alto: 0,
+                Ancho: 0,
+                Largo: 0,
+                Peso: 0,
+                Tiempo: ""
+            },
+            {
+                Id: 3,
+                Pedido: "Samuel",
+                orden: 1,
+                Estado: "PENDIENTE",
+                Nombre: "Dado D20",
+                Ruta: "./stl/D20.stl",
+                GCODE: "./gcode/D20.gcode",
+                Alto: 0,
+                Ancho: 0,
+                Largo: 0,
+                Peso: 0,
+                Tiempo: ""
             }
         ];
 
@@ -81,49 +193,116 @@
             });
         }
 
-        function cargaModelo(ruta) {
+        function cargaModelo(i) {
+            $('#div_titulo').html(listado[i].Nombre);
+            $('#txt_alto').val(listado[i].Alto);
+            $('#txt_ancho').val(listado[i].Ancho);
+            $('#txt_largo').val(listado[i].Largo);
+            $('#txt_peso').val(listado[i].Peso);
+            $('#txt_tiempo').val(listado[i].Tiempo);
+
+            var div_estado = "";
+            switch (listado[i].Estado) {
+                case "LISTO":
+                    div_estado =
+                        "<div class='alert alert-success' role='alert'><span class='font-weight-bold'>Listo</span></div>";
+                    break;
+                case "PENDIENTE":
+                    div_estado =
+                        "<div class='alert alert-warning' role='alert'><span class='font-weight-bold'>Pendiente</span></div>";
+                    break;
+                case "IMPRIMIENDO":
+                    div_estado =
+                        "<div class='alert alert-dark' role='alert'><span class='font-weight-bold'>Imprimiendo</span></div>";
+                    break;
+                case "ERROR":
+                    div_estado =
+                        "<div class='alert alert-danger' role='alert'><span class='font-weight-bold'>Error</span></div>";
+                    break;
+                default:
+                    div_estado =
+                        "<div class='alert alert-secondary' role='alert'><span class='font-weight-bold'>OTRO</span></div>";
+            }
+            $('#div_estado').html(div_estado);
+
             $('#bar_progreso').css('width', '0%');
             stl_viewer.remove_model(1);
             stl_viewer.add_models([{
                 id: 1,
-                filename: ruta,
-                rotationx: -0.5 * 3.1415927,
+                filename: listado[i].Ruta,
                 color: "#ff9900",
-                display: "smooth"
+                display: "flat"
             }]);
         }
 
-        /*window.onload = function () {
-            var madeleine = new Madeleine({
-                target: 'target',
-                data: './stl/all_might_and_stand.stl',
-                path: './src'
-            });
-        };*/
+        function compare(a, b) {
+            if (a.orden < b.orden) {
+                return -1;
+            }
+            if (a.orden > b.orden) {
+                return 1;
+            }
+            return 0;
+        }
+
+        function verModelo(id) {
+            $('.nav-tabs #modelos-tab').tab('show');
+            var indice = 0;
+            for (let i = 0; i < listado.length; i += 1) {
+                if (listado[i].Id == id) {
+                    indice = i;
+                    break;
+                }
+            }
+            cargaModelo(indice);
+        }
 
         var stl_viewer = new StlViewer(
             document.getElementById("stl_cont"), {
                 loading_progress_callback: load_prog,
                 zoom: 80,
                 loop: true,
-
+                auto_rotate: true,
                 models: [{
                     id: 1,
                     filename: "./stl/D20.stl",
-                    rotationx: -0.5 * 3.1415927,
                     color: "#ff9900",
-                    display: "smooth"
+                    display: "flat"
                 }]
             }
         );
 
         $(document).ready(function () {
-            for (let i = 0; i < listado.length; i += 1) {
+            $('#div_titulo').html('Dado D20');
 
-                $("#div_botones").append(
-                    "<div class='btn-group' role='group' style='padding: 0 !important; width:100%;'>" +
-                    "<button type='button' class='btn btn-warning' onclick='cargaModelo(\"" + listado[i]
-                    .Ruta + "\");'>" + (i + 1) + ".- " + listado[i].Nombre +
+            var items = [];
+
+            for (let i = 0; i < listado.length; i += 1) {
+                var boton = "<div class='btn-group' role='group' style='padding: 0 !important; width:100%;'>" +
+                    "<button type='button' ";
+
+                switch (listado[i].Estado) {
+                    case "LISTO":
+                        boton = boton + "class='btn btn-success' ";
+                        break;
+                    case "PENDIENTE":
+                        boton = boton + "class='btn btn-warning' ";
+                        items.push(listado[i]);
+                        break;
+                    case "IMPRIMIENDO":
+                        boton = boton + "class='btn btn-dark' ";
+                        break;
+                    case "ERROR":
+                        boton = boton + "class='btn btn-danger' ";
+                        break;
+                    default:
+                        boton = boton + "class='btn btn-secondary' ";
+                }
+
+
+
+                boton = boton + "onclick='cargaModelo(" + i +
+                    ");'>" + (i + 1) + ".- " + listado[i].Nombre +
                     "</button>" +
                     "<button type='button' class='btn btn-danger' onclick='window.open(\"" +
                     listado[i]
@@ -134,11 +313,31 @@
                     .GCODE +
                     "\");'>GCODE</button>" +
 
-                    "</div><br/><br/>"
-                );
+                    "</div><br/><br/>";
+
+                $("#div_botones").append(boton);
             }
+
+            items.sort(compare);
+            for (let i = 0; i < items.length; i += 1) {
+                var divAgregar = "<li class='list-group-item'>" + (i + 1) + ".- " + items[i].Nombre +
+                    " - <span class='font-weight-bold'>" + items[i].Pedido + "</span>" +
+                    "<button type='button' class='btn btn-success float-right' onclick='verModelo(" + items[i]
+                    .Id +
+                    ");'>ver</button>" +
+                    "</li>";
+                //
+                $("#div_lst_pendientes").append(divAgregar);
+            }
+
         });
+    </script>
+
+    <script>
+        window.onload = function () {
+            cargaModelo(0);
+        };
     </script>
 </body>
 
-</html>style='background-color:transparent;'
+</html>
