@@ -9,36 +9,19 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="src/css/Madeleine.css" rel="stylesheet">
+    <script src="src/lib/stats.js"></script>
+    <script src="src/lib/detector.js"></script>
+    <script src="src/lib/three.min.js"></script>
+    <script src="src/Madeleine.js"></script>
 </head>
-
-<script>
-    function load_prog(load_status, load_session) {
-        var loaded = 0;
-        var total = 0;
-
-        Object.keys(load_status).forEach(function (model_id) {
-            if (load_status[model_id].load_session == load_session) {
-                loaded += load_status[model_id].loaded;
-                total += load_status[model_id].total;
-
-                document.getElementById("pb" + model_id).value = load_status[model_id].loaded / load_status[
-                    model_id].total;
-            }
-        });
-
-        //document.getElementById("pbtotal").value = loaded / total;
-    }
-</script>
 
 <body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8">
-
-                <div id="stl_cont" style="height: 700px; width: 100%;"></div>
-                <hr />
-                'all_might_and_stand.stl' Progreso:</br>
-                <progress id="pb0" value="0" max="1"></progress>
+                <div id="target" class="madeleine"></div>
             </div>
             <div class="col-lg-4">
                 <h1>Modelo 3D</h1>
@@ -47,21 +30,14 @@
 
     </div>
 
-
-    <script src="stl_viewer.min.js"></script>
     <script>
-        var stl_viewer = new StlViewer(
-            document.getElementById("stl_cont"), {
-                loading_progress_callback: load_prog,
-                zoom: 40,
-                auto_rotate: true,
-                models: [{
-                    id: 0,
-                    filename: "all_might_and_stand.stl",
-                    scale: 1
-                }]
-            }
-        );
+        window.onload = function () {
+            var madeleine = new Madeleine({
+                target: 'target',
+                data: 'all_might_and_stand.stl',
+                path: './'
+            });
+        };
     </script>
 
 
@@ -73,21 +49,6 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-</body>
-
-
-<body>
-
-
-
-    <script>
-        var stl_viewer = new StlViewer(document.getElementById("stl_cont"), {
-            models: [{
-                id: 0,
-                filename: "all_might_and_stand.stl"
-            }]
-        });
     </script>
 </body>
 
