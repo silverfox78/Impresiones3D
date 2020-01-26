@@ -8,118 +8,262 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" type="image/x-icon" href="ponyo.ico">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <style>
+        pre {
+            outline: 1px solid #ccc;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        .string {
+            color: green;
+        }
+
+        .number {
+            color: darkorange;
+        }
+
+        .boolean {
+            color: blue;
+        }
+
+        .null {
+            color: magenta;
+        }
+
+        .key {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-        <br />
-        <div class="jumbotron" style="background-color: rgb(34, 124, 207);">
-            <h3 class="font-weight-bold">Listado de Modelo 3D</h3>
-        </div>
-        <br />
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="modelos-tab" data-toggle="tab" href="#modelos" role="tab"
-                    aria-controls="modelos" aria-selected="true">Modelos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pendientes-tab" data-toggle="tab" href="#pendientes" role="tab"
-                    aria-controls="pendientes" aria-selected="false">Pendientes</a>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="modelos" role="tabpanel" aria-labelledby="modelos-tab">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="container-fluid">
                 <br />
-                <div class="row">
-                    <div class="col-lg-8">
+                <div class="jumbotron" style="background-color: rgb(34, 124, 207);">
+                    <h3 class="font-weight-bold">Listado de Modelo 3D</h3>
+                </div>
+                <br />
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="modelos-tab" data-toggle="tab" href="#modelos" role="tab"
+                            aria-controls="modelos" aria-selected="true">Modelos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pendientes-tab" data-toggle="tab" href="#pendientes" role="tab"
+                            aria-controls="pendientes" aria-selected="false">Pendientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="nuevo-tab" data-toggle="tab" href="#nuevo" role="tab"
+                            aria-controls="nuevo" aria-selected="false">Informacion nuevo pedido</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="Contenido">
+                    <div class="tab-pane fade show active" id="modelos" role="tabpanel" aria-labelledby="modelos-tab">
+                        <br />
                         <div class="row">
-                            <div class="col-9">
+                            <div class="col-lg-8">
                                 <div id="div_titulo" class="alert alert-primary" role="alert"></div>
+                                <!-- <div class="row">
+                                    <div class="col-9">
+                                        
+                                    </div>
+                                    <div class="col-3" id="div_estado"></div>
+                                </div> -->
+
+                                <div class="form-row align-items-center">
+                                    <div class="col-2">
+                                        <label class="sr-only" for="inlineFormInputGroup">Alto</label>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">Alto</div>
+                                            </div>
+                                            <input type="text" class="form-control" id="txt_alto" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-2">
+                                        <label class="sr-only" for="inlineFormInputGroup">Ancho</label>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">Ancho</div>
+                                            </div>
+                                            <input type="text" class="form-control" id="txt_ancho" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-2">
+                                        <label class="sr-only" for="inlineFormInputGroup">Largo</label>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">Largo</div>
+                                            </div>
+                                            <input type="text" class="form-control" id="txt_largo" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-2">
+                                        <label class="sr-only" for="inlineFormInputGroup">Peso</label>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">Peso</div>
+                                            </div>
+                                            <input type="text" class="form-control" id="txt_peso" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <label class="sr-only" for="inlineFormInputGroup">Tiempo</label>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">Tiempo</div>
+                                            </div>
+                                            <input type="text" class="form-control" id="txt_tiempo" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div id="bar_progreso" class="progress-bar progress-bar-striped" role="progressbar"
+                                        aria-valuenow="10" aria-valuemin="0" aria-valuemax="1"></div>
+                                </div>
+                                <hr />
+                                <div id="stl_cont" style="max-height: 700px; height: 700px; margin: auto; width: 80%;">
+                                </div>
                             </div>
-                            <div class="col-3" id="div_estado"></div>
+                            <div class="col-lg-4">
+                                <div class="card">
+                                    <h5 class="card-header">Modelos</h5>
+                                    <div id="div_botones" class="card-body overflow-auto"></div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <div class="tab-pane fade" id="pendientes" role="tabpanel" aria-labelledby="pendientes-tab">
+                        <br />
+                        <div class="card" style="width: 100%;">
+                            <div class="card-header">
+                                Listado de pendientes
+                            </div>
+                            <ul class="list-group list-group-flush" id="div_lst_pendientes"></ul>
+                        </div>
+                    </div>
 
-                        <div class="form-row align-items-center">
-                            <div class="col-2">
-                                <label class="sr-only" for="inlineFormInputGroup">Alto</label>
-                                <div class="input-group input-group-sm mb-3">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Alto</div>
+                    <div class="tab-pane fade" id="nuevo" role="tabpanel" aria-labelledby="nuevo-tab">
+                        <br />
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="card" style="width: 100%;">
+                                    <div class="card-header">
+                                        <h3>Formulario de nuevos pedidos</h3>
                                     </div>
-                                    <input type="text" class="form-control" id="txt_alto" disabled>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm"
+                                                    class="col-sm-2 col-form-label col-form-label-sm">Pedido por</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" id="txt_new_pedido"
+                                                        class="form-control form-control-sm" id="colFormLabelSm"
+                                                        placeholder="El nombre de quien lo pide...">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm"
+                                                    class="col-sm-2 col-form-label col-form-label-sm">Nombre</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" id="txt_new_nombre"
+                                                        class="form-control form-control-sm" id="colFormLabelSm"
+                                                        placeholder="Nombre de fantasia">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm"
+                                                    class="col-sm-2 col-form-label col-form-label-sm">Referencia</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" id="txt_new_referencia"
+                                                        class="form-control form-control-sm" id="colFormLabelSm"
+                                                        placeholder="URL de referencia para la impresion">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm"
+                                                    class="col-sm-2 col-form-label col-form-label-sm">Alto</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" id="txt_new_alto"
+                                                        class="form-control form-control-sm" id="colFormLabelSm"
+                                                        placeholder="Alto en milimetros">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm"
+                                                    class="col-sm-2 col-form-label col-form-label-sm">Ancho</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" id="txt_new_ancho"
+                                                        class="form-control form-control-sm" id="colFormLabelSm"
+                                                        placeholder="Ancho en milimetros">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm"
+                                                    class="col-sm-2 col-form-label col-form-label-sm">Largo</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" id="txt_new_largo"
+                                                        class="form-control form-control-sm" id="colFormLabelSm"
+                                                        placeholder="Largo en milimetros">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm"
+                                                    class="col-sm-2 col-form-label col-form-label-sm">Peso</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" id="txt_new_peso"
+                                                        class="form-control form-control-sm" id="colFormLabelSm"
+                                                        placeholder="Peso en gramos">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="colFormLabelSm"
+                                                    class="col-sm-2 col-form-label col-form-label-sm">Tiempo</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" id="txt_new_tiempo"
+                                                        class="form-control form-control-sm" id="colFormLabelSm"
+                                                        placeholder="Tiempo de impresion ([X]d [Y]h [Z]m)">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type='button' class='btn btn-success float-right'
+                                            onclick="verJson()">ver</button>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="col-2">
-                                <label class="sr-only" for="inlineFormInputGroup">Ancho</label>
-                                <div class="input-group input-group-sm mb-3">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Ancho</div>
-                                    </div>
-                                    <input type="text" class="form-control" id="txt_ancho" disabled>
-                                </div>
-                            </div>
-
-                            <div class="col-2">
-                                <label class="sr-only" for="inlineFormInputGroup">Largo</label>
-                                <div class="input-group input-group-sm mb-3">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Largo</div>
-                                    </div>
-                                    <input type="text" class="form-control" id="txt_largo" disabled>
-                                </div>
-                            </div>
-
-                            <div class="col-2">
-                                <label class="sr-only" for="inlineFormInputGroup">Peso</label>
-                                <div class="input-group input-group-sm mb-3">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Peso</div>
-                                    </div>
-                                    <input type="text" class="form-control" id="txt_peso" disabled>
-                                </div>
-                            </div>
-
                             <div class="col-4">
-                                <label class="sr-only" for="inlineFormInputGroup">Tiempo</label>
-                                <div class="input-group input-group-sm mb-3">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Tiempo</div>
-                                    </div>
-                                    <input type="text" class="form-control" id="txt_tiempo" disabled>
-                                </div>
+                                <pre id="preCodigoNuevo"></pre>
                             </div>
                         </div>
-                        <div class="progress">
-                            <div id="bar_progreso" class="progress-bar progress-bar-striped" role="progressbar"
-                                aria-valuenow="10" aria-valuemin="0" aria-valuemax="1"></div>
-                        </div>
-                        <hr />
-                        <div id="stl_cont" style="max-height: 700px; height: 700px; margin: auto; width: 80%;"></div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <h5 class="card-header">Modelos</h5>
-                            <div id="div_botones" class="card-body overflow-auto"></div>
-                        </div>
+
                     </div>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="pendientes" role="tabpanel" aria-labelledby="pendientes-tab">
-                <br />
-                <div class="card" style="width: 100%;">
-                    <div class="card-header">
-                        Listado de pendientes
-                    </div>
-                    <ul class="list-group list-group-flush" id="div_lst_pendientes"></ul>
-                </div>
+
+
+                <br /><br /><br /><br /><br />
             </div>
         </div>
-
-
-        <br /><br /><br /><br /><br />
+        <div class="col-1"></div>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
@@ -131,8 +275,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script src="stl_viewer.min.js"></script>
-
     <script>
+        var idNuevo = 0;
         let listado = [{
                 Id: 1,
                 Pedido: "Nadie",
@@ -145,7 +289,8 @@
                 Ancho: "128 mm",
                 Largo: "128 mm",
                 Peso: "97gr",
-                Tiempo: "1d 3h 27m"
+                Tiempo: "1d 3h 27m",
+                Referencia: "https://cults3d.com/es/modelo-3d/casa/base-para-pintar"
             },
             {
                 Id: 2,
@@ -159,7 +304,8 @@
                 Ancho: "115.2mm",
                 Largo: "115.2mm",
                 Peso: "173gr",
-                Tiempo: "1d 4h 33m"
+                Tiempo: "1d 4h 33m",
+                Referencia: "https://www.thingiverse.com/thing:4022460"
             },
             {
                 Id: 3,
@@ -173,7 +319,8 @@
                 Ancho: "29.5mm",
                 Largo: "31.2mm",
                 Peso: "6gr",
-                Tiempo: "2h 17m"
+                Tiempo: "2h 17m",
+                Referencia: "https://www.thingiverse.com/make:576574"
             }
         ];
 
@@ -194,36 +341,47 @@
         }
 
         function cargaModelo(i) {
-            $('#div_titulo').html(listado[i].Nombre);
+            var div_estado = "";
+            switch (listado[i].Estado) {
+                case "LISTO":
+                    div_estado =
+                        "<button type='button' class='btn btn-success btn-sm' disabled><span class='font-weight-bold'>Listo</span></button>";
+                    break;
+                case "PENDIENTE":
+                    div_estado =
+                        "<button type='button' class='btn btn-warning btn-sm' disabled><span class='font-weight-bold'>Pendiente</span></button>";
+                    break;
+                case "IMPRIMIENDO":
+                    div_estado =
+                        "<button type='button' class='btn btn-dark btn-sm' disabled><span class='font-weight-bold'>Imprimiendo</span></button>";
+                    break;
+                case "ERROR":
+                    div_estado =
+                        "<button type='button' class='btn btn-danger btn-sm' disabled><span class='font-weight-bold'>Error</span></button>";
+                    break;
+                default:
+                    div_estado =
+                        "<button type='button' class='btn btn-secondary btn-sm' disabled><span class='font-weight-bold'>OTRO</span></button>";
+            }
+
+            var titulo = "<div class='row'>" +
+                "<div class='col-8'>" +
+                listado[i].Nombre +
+                "</div>" +
+                "<div class='col-4'>" +
+                "<div class='btn-group float-right' role='group'>" +
+                "<button type='button' class='btn btn-primary btn-sm float-right' onclick='window.open(\"" +
+                listado[i]
+                .Referencia +
+                "\");'>mas informacion</button>" + div_estado +
+                "</div></div>" +
+                "</div>";
+            $('#div_titulo').html(titulo);
             $('#txt_alto').val(listado[i].Alto);
             $('#txt_ancho').val(listado[i].Ancho);
             $('#txt_largo').val(listado[i].Largo);
             $('#txt_peso').val(listado[i].Peso);
             $('#txt_tiempo').val(listado[i].Tiempo);
-
-            var div_estado = "";
-            switch (listado[i].Estado) {
-                case "LISTO":
-                    div_estado =
-                        "<div class='alert alert-success' role='alert'><span class='font-weight-bold'>Listo</span></div>";
-                    break;
-                case "PENDIENTE":
-                    div_estado =
-                        "<div class='alert alert-warning' role='alert'><span class='font-weight-bold'>Pendiente</span></div>";
-                    break;
-                case "IMPRIMIENDO":
-                    div_estado =
-                        "<div class='alert alert-dark' role='alert'><span class='font-weight-bold'>Imprimiendo</span></div>";
-                    break;
-                case "ERROR":
-                    div_estado =
-                        "<div class='alert alert-danger' role='alert'><span class='font-weight-bold'>Error</span></div>";
-                    break;
-                default:
-                    div_estado =
-                        "<div class='alert alert-secondary' role='alert'><span class='font-weight-bold'>OTRO</span></div>";
-            }
-            $('#div_estado').html(div_estado);
 
             $('#bar_progreso').css('width', '0%');
             stl_viewer.clean();
@@ -262,8 +420,6 @@
             document.getElementById("stl_cont"), {
                 loading_progress_callback: load_prog,
                 zoom: 80,
-                /*loop: true,
-                auto_rotate: true,*/
                 models: [{
                     id: 0,
                     filename: "./stl/Base Impresion.stl",
@@ -275,12 +431,64 @@
 
         stl_viewer.clean();
 
+        var jsonNuevo = {
+            Id: 0,
+            Pedido: "",
+            orden: 0,
+            Estado: "PENDIENTE",
+            Nombre: "",
+            Alto: "",
+            Ancho: "",
+            Largo: "",
+            Peso: "",
+            Tiempo: "",
+            Referencia: ""
+        };
+
+        function syntaxHighlight(json) {
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return json.replace(
+                /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+                function (match) {
+                    var cls = 'number';
+                    if (/^"/.test(match)) {
+                        if (/:$/.test(match)) {
+                            cls = 'key';
+                        } else {
+                            cls = 'string';
+                        }
+                    } else if (/true|false/.test(match)) {
+                        cls = 'boolean';
+                    } else if (/null/.test(match)) {
+                        cls = 'null';
+                    }
+                    return '<span class="' + cls + '">' + match + '</span>';
+                });
+        }
+
+        function verJson() {
+            jsonNuevo.Id = idNuevo + 1;
+            jsonNuevo.orden = idNuevo + 1;
+            jsonNuevo.Pedido = $("#txt_new_pedido").val();
+            jsonNuevo.Nombre = $("#txt_new_nombre").val();
+            jsonNuevo.Alto = $("#txt_new_alto").val();
+            jsonNuevo.Ancho = $("#txt_new_ancho").val();
+            jsonNuevo.Largo = $("#txt_new_largo").val();
+            jsonNuevo.Peso = $("#txt_new_peso").val();
+            jsonNuevo.Tiempo = $("#txt_new_tiempo").val();
+            jsonNuevo.Referencia = $("#txt_new_referencia").val();
+
+            var str = JSON.stringify(jsonNuevo, undefined, 4);
+            $("#preCodigoNuevo").html(syntaxHighlight(str));
+        }
+
         $(document).ready(function () {
             $('#div_titulo').html('Dado D20');
 
             var items = [];
 
             for (let i = 0; i < listado.length; i += 1) {
+                idNuevo++;
                 var boton = "<div class='btn-group' role='group' style='padding: 0 !important; width:100%;'>" +
                     "<button type='button' ";
 
@@ -329,16 +537,17 @@
                     .Id +
                     ");'>ver</button>" +
                     "</li>";
-                //
                 $("#div_lst_pendientes").append(divAgregar);
-            }
+            };
 
+            verJson();
         });
     </script>
 
     <script>
         window.onload = function () {
             cargaModelo(0);
+            verJson();
         };
     </script>
 </body>
