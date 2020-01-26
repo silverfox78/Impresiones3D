@@ -9,25 +9,97 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <script src="stl_viewer.min.js"></script>
 </head>
+
+<script>
+    function load_prog(load_status, load_session) {
+        var loaded = 0;
+        var total = 0;
+
+        Object.keys(load_status).forEach(function (model_id) {
+            if (load_status[model_id].load_session == load_session) {
+                loaded += load_status[model_id].loaded;
+                total += load_status[model_id].total;
+
+                document.getElementById("pb" + model_id).value = load_status[model_id].loaded / load_status[
+                    model_id].total;
+            }
+        });
+
+        document.getElementById("pbtotal").value = loaded / total;
+    }
+</script>
 
 <body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8">
-                <h1>Modelo 3D</h1>
-                <div id="stl_cont"></div>
+
+                <div id="stl_cont" style="width:500px;height:500px;margin:0 auto;"></div>
             </div>
             <div class="col-lg-4">
-
+                <h1>Modelo 3D</h1>
             </div>
         </div>
 
     </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+    <script src="stl_viewer.min.js"></script>
+    <script>
+        var stl_viewer = new StlViewer(
+            document.getElementById("stl_cont"), {
+                loading_progress_callback: load_prog,
+                zoom: 80,
+                models: [{
+                        id: 1,
+                        filename: "all_might_and_stand.stl"
+                    },
+                    {
+                        id: 2,
+                        filename: "all_might_and_stand.stl",
+                        color: '#AAFF22',
+                        display: 'smooth',
+                        rotationx: -1.2,
+                        scale: 0.1,
+                        y: 15
+                    },
+                    {
+                        id: 3,
+                        filename: "all_might_and_stand.stl",
+                        rotationx: -0.5 * 3.1415927,
+                        color: "#FFFFFF",
+                        display: "smooth"
+                    },
+                    {
+                        id: 4,
+                        filename: "all_might_and_stand.stl",
+                        color: "#7ECA5",
+                        display: "smooth",
+                        scale: 5,
+                        x: 20,
+                        y: 10
+                    }
+                ]
+            }
+        );
+    </script>
+
+    'all_might_and_stand.stl' loading progress:<br>
+    <progress id="pb1" value="0" max="1"></progress>
+
+    'all_might_and_stand.stl' loading progress:
+    <progress id="pb2" value="0" max="1"></progress>
+
+    'all_might_and_stand.stl' loading progress:
+    <progress id="pb3" value="0" max="1"></progress>
+
+    'all_might_and_stand.stl' loading progress:
+    <progress id="pb4" value="0" max="1"></progress>
+
+    TOTAL loading progress:
+    <progress id="pbtotal" class="p-total" value="0" max="1"></progress>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
@@ -37,6 +109,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+</body>
+
+
+<body>
+
+
 
     <script>
         var stl_viewer = new StlViewer(document.getElementById("stl_cont"), {
