@@ -82,6 +82,7 @@
         }
 
         function cargaModelo(ruta) {
+            $('#bar_progreso').css('width', '0%');
             stl_viewer.remove_model(1);
             stl_viewer.add_models([{
                 id: 1,
@@ -120,18 +121,24 @@
             for (let i = 0; i < listado.length; i += 1) {
 
                 $("#div_botones").append(
-                    "<div class='btn-group' role='group'>" +
+                    "<div class='btn-group' role='group' style='padding: 0 !important; width:100%;'>" +
                     "<button type='button' class='btn btn-warning' onclick='cargaModelo(\"" + listado[i]
                     .Ruta + "\");'>" + (i + 1) + ".- " + listado[i].Nombre +
                     "</button>" +
-                    "<button type='button' class='btn btn-success' onclick='window.open(\"" + listado[i]
+                    "<button type='button' class='btn btn-danger' onclick='window.open(\"" +
+                    listado[i]
+                    .Ruta +
+                    "\");'>STL</button>" +
+                    "<button type='button' class='btn btn-success' onclick='window.open(\"" +
+                    listado[i]
                     .GCODE +
-                    "\");'><span class='glyphicon glyphicon-download-alt'></span>  Desgardar GCODE</button>" +
+                    "\");'>GCODE</button>" +
 
-                    "</div><br/><br/>");
+                    "</div><br/><br/>"
+                );
             }
         });
     </script>
 </body>
 
-</html>
+</html>style='background-color:transparent;'
